@@ -66,7 +66,21 @@ pytest -v
 pytest <specific file name>
 
 2. Run Tests with Coverage
+# Coverage Report
+pytest --cov=app
+# HTML Report
+pytest --cov=app --cov-report=html
 
+3. Viewing Reports
+# Terminal
+pytest --cov=app --cov-report=term
+# HTML (macOS)
+pytest --cov=app --cov-report=html
+open htmlcov/index.html
+**-------------------------------------------------------------------------------****CI/CD Information**
+Github Actions Workflow is used via a .yml file to automate testing on Github requests. The workflow file is located at .github/workflows/tests.yml
+
+When in the Github repository, click the 'Actions' tab. There you can view the workflow running in real-time and its' overall status.
 
 
 
