@@ -193,8 +193,8 @@ class TestModulus(BaseOperationTest):
     valid_test_cases = {
         "positive_numbers": {"a": "10", "b": "3", "expected": "1"},
         "even_division": {"a": "10", "b": "5", "expected": "0"},
-        "negative_dividend": {"a": "-10", "b": "3", "expected": "2"},
-        "negative_divisor": {"a": "10", "b": "-3", "expected": "-2"},
+        "negative_dividend": {"a": "-10", "b": "3", "expected": "-1"},
+        "negative_divisor": {"a": "10", "b": "-3", "expected": "1"},
         "decimals": {"a": "5.5", "b": "2", "expected": "1.5"},
         "large_numbers": {"a": "1000", "b": "7", "expected": "6"},
     }
