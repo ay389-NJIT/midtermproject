@@ -17,8 +17,8 @@
 
 # Installation Instruction
 1. Clone Repo
-- git clone <url>
-- cd <repo name>
+- git clone 'url'
+- cd 'repo name'
 
 2. Create Virtual Environment (VENV)
 - python -m venv venv
@@ -32,13 +32,13 @@
 - mkdir logs history
 
 # Configuration Setup
-1. Create .env file
+1. Create .env file<br>
 **Base Directories**
 - CALCULATOR_LOG_DIR=logs
-- CALCULATOR_HISTORY_DIR=history
+- CALCULATOR_HISTORY_DIR=history<br>
 **History Settings**
 - CALCULATOR_MAX_HISTORY_SIZE=1000
-- CALCULATOR_AUTO_SAVE=true
+- CALCULATOR_AUTO_SAVE=true<br>
 **Calculation Settings**
 - CALCULATOR_PRECISION=10
 - CALCULATOR_MAX_INPUT_VALUE=1000000
@@ -55,25 +55,25 @@
 - History, Clear, Undo, Redo, Save, Load, Help, Exit
 
 # Testing Guide
-1. Run Tests
+1. Run Tests<br>
 **All tests**
-- pytest
+- pytest<br>
 **Verbose Tests**
-- pytest -v
+- pytest -v<br>
 **Targeted Testing of a file**
-- pytest <specific file name>
+- pytest 'specific file name'<br>
 
-2. Run Tests with Coverage
+2. Run Tests with Coverage<br>
 **Coverage Report**
-- pytest --cov=app
+- pytest --cov=app<br>
 **HTML Report**
-- pytest --cov=app --cov-report=html
+- pytest --cov=app --cov-report=html<br>
 
-3. Viewing Reports
+3. Viewing Reports<br>
 **Terminal**
-- pytest --cov=app --cov-report=term
+- pytest --cov=app --cov-report=term<br>
 **HTML (macOS)**
-- pytest --cov=app --cov-report=html
+- pytest --cov=app --cov-report=html<br>
 - open htmlcov/index.html
 
 # CI/CD Information
