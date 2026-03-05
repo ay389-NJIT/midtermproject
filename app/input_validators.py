@@ -21,7 +21,7 @@ class InputValidator:
                 value = value.strip()
             number = Decimal(str(value))
             if abs(number) > config.max_input_value:
-                raise ValidationError(f"Value exceeds maximum: {config.max_input_value}")
+                raise ValidationError(f"Value exceeds maximum allowed: {config.max_input_value}")
             return number.normalize()
         except InvalidOperation as e:
             raise ValidationError(f"Invalid number format: {value}") from e
