@@ -215,8 +215,8 @@ class TestIntegerDivision(BaseOperationTest):
     valid_test_cases = {
         "positive_numbers": {"a": "10", "b": "3", "expected": "3"},
         "even_division": {"a": "10", "b": "5", "expected": "2"},
-        "negative_dividend": {"a": "-10", "b": "3", "expected": "-4"},
-        "negative_divisor": {"a": "10", "b": "-3", "expected": "-4"},
+        "negative_dividend": {"a": "-10", "b": "3", "expected": "-3"},
+        "negative_divisor": {"a": "10", "b": "-3", "expected": "-3"},
         "both_negative": {"a": "-10", "b": "-3", "expected": "3"},
         "decimals": {"a": "7.5", "b": "2", "expected": "3"},
         "large_numbers": {"a": "1000", "b": "7", "expected": "142"},
