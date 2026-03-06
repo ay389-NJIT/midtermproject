@@ -7,7 +7,8 @@
 - The Advanced Calculator Application is command-line tool using Python for development. The calcultor is developed using professional software techniques and includes design patterns such as Factory, Memento, and Observer. There are 10 total arithmetic operations, undo/redo functionality, automated testing, automated Github integration, result storage and more.
 
 **Features**
-- Arithmetic: Addition, Subtraction, Multiplication, Division, Power, Root, Modulus, Integer Division, Percentage, Absolute Difference
+- Arithmetic: 
+Addition, Subtraction, Multiplication, Division, Power, Root, Modulus, Integer Division, Percentage, Absolute Difference
 - View, Save, Load, Clear calculation history
 - Undo/Redo
 - Color-coded interface (GREEN = Sucess, CYAN = info/prompts, YELLOW = warnings, input messages, RED = errors)
@@ -49,32 +50,32 @@
 - python main.py
 
 **Arithmetic Options:**
-- Add, Subtract, Multiply, Divide, Power, Root, Modulus, Int_Divide, Percent,Abs_Diff
+- `Add`, `Subtract`, `Multiply`, `Divide`, `Power`, `Root`, `Modulus`, `Int_Divide`, `Percent`, `Abs_Diff`
 
 **Other Command Options:**
-- History, Clear, Undo, Redo, Save, Load, Help, Exit
+- `History`, `Clear`, `Undo`, `Redo`, `Save`, `Load`, `Help`, `Exit`
 
 # Testing Guide
 1. Run Tests<br>
 **All tests**
-- pytest<br>
+- `pytest`<br>
 **Verbose Tests**
-- pytest -v<br>
+- `pytest -v`<br>
 **Targeted Testing of a file**
-- pytest 'specific file name'<br>
+- `pytest 'specific file name'`<br>
 
 2. Run Tests with Coverage<br>
 **Coverage Report**
-- pytest --cov=app<br>
+- `pytest --cov=app`<br>
 **HTML Report**
-- pytest --cov=app --cov-report=html<br>
+- `pytest --cov=app --cov-report=html`<br>
 
 3. Viewing Reports<br>
 **Terminal**
-- pytest --cov=app --cov-report=term<br>
+- `pytest --cov=app --cov-report=term`<br>
 **HTML (macOS)**
-- pytest --cov=app --cov-report=html<br>
-- open htmlcov/index.html
+- `pytest --cov=app --cov-report=html`<br>
+- `open htmlcov/index.html`
 
 # CI/CD Information
 - Github Actions Workflow is used via a .yml file to automate testing on Github requests. The workflow file is located at .github/workflows/tests.yml
