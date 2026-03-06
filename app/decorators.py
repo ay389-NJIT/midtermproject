@@ -75,8 +75,7 @@ class OperationRegistry:
         Returns:
             Formatted help text with all operations organized by category
         """
-        from colorama import Fore, Style
-        
+
         help_lines = [f"\n{Fore.CYAN}Available commands:{Style.RESET_ALL}\n"]
         
         # Group operations by category
