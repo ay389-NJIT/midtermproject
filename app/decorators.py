@@ -15,7 +15,7 @@ class OperationRegistry:
     _operations: Dict[str, Dict[str,Any]] = {}
 
     @classmethod
-    def register(clas, name: str, category: str, description: str, example: str = ""):
+    def register(cls, name: str, category: str, description: str, example: str = ""):
         """
         Decorator to register an operation with metadata.
         
