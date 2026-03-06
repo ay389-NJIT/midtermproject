@@ -4,12 +4,13 @@
 
 from decimal import Decimal
 import logging
+from colorama import Fore, Style, init
 
 from app.calculator import Calculator
 from app.exceptions import OperationError, ValidationError
 from app.history import AutoSaveObserver, LoggingObserver
 from app.operations import OperationFactory
-from colorama import Fore, Style, init
+from app.decorators import OperationRegistry
 
 init(autoreset=True)                      
 
@@ -37,19 +38,9 @@ def calculator_repl():
                 command = input(f"{Fore.YELLOW}Enter command: {Style.RESET_ALL}").lower().strip()
 
                 if command == 'help':
-                    # Display available commands
-                    print(f"\n{Fore.CYAN}Available commands:{Style.RESET_ALL}")
-                    print(f"  {Fore.GREEN}add, subtract, multiply, divide{Style.RESET_ALL} - Basic arithmetic operations")
-                    print(f"  {Fore.GREEN}power, root{Style.RESET_ALL} - Power and root calculations")
-                    print(f"  {Fore.GREEN}modulus, int_divide{Style.RESET_ALL} - Modulus and integer division")
-                    print(f"  {Fore.GREEN}percent, abs_diff{Style.RESET_ALL} - Percentage and absolute difference")
-                    print(f"  {Fore.CYAN}history{Style.RESET_ALL} - Show calculation history")
-                    print(f"  {Fore.CYAN}clear{Style.RESET_ALL} - Clear calculation history")
-                    print(f"  {Fore.CYAN}undo{Style.RESET_ALL} - Undo the last calculation")
-                    print(f"  {Fore.CYAN}redo{Style.RESET_ALL} - Redo the last undone calculation")
-                    print(f"  {Fore.CYAN}save{Style.RESET_ALL} - Save calculation history to file")
-                    print(f"  {Fore.CYAN}load{Style.RESET_ALL} - Load calculation history from file")
-                    print(f"  {Fore.MAGENTA}exit{Style.RESET_ALL} - Exit the calculator")
+                    # Display dynamically generated help menu (Decorator Pattern)
+                    help_text = OperationRegistry.generate_help_text()
+                    print(help_text)
                     continue
 
                 if command == 'exit':
@@ -113,7 +104,8 @@ def calculator_repl():
                         print(f"{Fore.RED}Error loading history: {e}{Style.RESET_ALL}")
                     continue
 
-                if command in ['add', 'subtract', 'multiply', 'divide', 'power', 'root', 'modulus', 'int_divide', 'percent', 'abs_diff']:
+                # Check if command is a registered operation (Decorator Pattern)
+                if command in OperationRegistry.get_operation_names():
                     # Perform the specified arithmetic operation
                     try:
                         print(f"\n{Fore.CYAN}Enter numbers (or 'cancel' to abort):{Style.RESET_ALL}")
