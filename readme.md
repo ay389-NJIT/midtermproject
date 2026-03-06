@@ -81,7 +81,34 @@
 
 - When in the Github repository, click the 'Actions' tab. There you can view the workflow running in real-time and its' overall status.
 
+# Advanced Design Patterns
 
+**Dynamic Help Menu (Decorator Pattern)**
+The calculator uses the Decorator Pattern to automatically register operations, enabling dynamic help menu generation.
+
+**How it works:**
+- Each operation class is decorated with @OperationRegistry.register()
+- Includes: name, category, description, and example
+- Help menu is generated dynamically from registered operations
+- Adding new operations automatically updates the help menu
+
+**Usage:**
+- help: displays categorized operations dynamically
+
+### Command Pattern
+Operations are encapsulated as command objects, enabling advanced features:
+
+**Benefits:**
+- Command queuing and history tracking
+- Detailed operation logging
+- Potential for command replay
+- Separation of request from execution
+
+**Architecture:**
+- `Command` - Abstract base class
+- `CalculationCommand` - Encapsulates calculation requests
+- `CommandHistory` - Tracks executed commands
+- `CommandInvoker` - Manages command execution
 
 
 
