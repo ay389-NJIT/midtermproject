@@ -95,7 +95,7 @@ The calculator uses the Decorator Pattern to automatically register operations, 
 **Usage:**
 - help: displays categorized operations dynamically
 
-### Command Pattern
+# Command Pattern
 Operations are encapsulated as command objects, enabling advanced features:
 
 **Benefits:**
