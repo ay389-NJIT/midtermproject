@@ -11,6 +11,7 @@ from app.exceptions import OperationError, ValidationError
 from app.history import AutoSaveObserver, LoggingObserver
 from app.operations import OperationFactory
 from app.decorators import OperationRegistry
+from app.commands import CommandInvoker
 
 init(autoreset=True)                      
 
@@ -28,6 +29,9 @@ def calculator_repl():
         # Register observers for logging and auto-saving history
         calc.add_observer(LoggingObserver())
         calc.add_observer(AutoSaveObserver(calc))
+
+        #Command Invoker
+        invoker = CommandInvoker(calc)
 
         #new color print
         print(f"{Fore.CYAN}Calculator started. Type 'help' for commands.{Style.RESET_ALL}")
@@ -62,6 +66,12 @@ def calculator_repl():
                         print(f"\n{Fore.CYAN}Calculation History:{Style.RESET_ALL}")
                         for i, entry in enumerate(history, 1):
                             print(f"{Fore.WHITE}{i}. {entry}{Style.RESET_ALL}")
+                    continue
+                
+                if command == 'commands':
+                    # Display command history (Command Pattern feature)
+                    summary = invoker.show_command_summary()
+                    print(f"\n{Fore.CYAN}{summary}{Style.RESET_ALL}")
                     continue
 
                 if command == 'clear':
@@ -119,11 +129,13 @@ def calculator_repl():
                             continue
 
                         # Create the appropriate operation instance using the Factory pattern
-                        operation = OperationFactory.create_operation(command)
-                        calc.set_operation(operation)
-
+                        #operation = OperationFactory.create_operation(command)
+                        #calc.set_operation(operation)
                         # Perform the calculation
-                        result = calc.perform_operation(a, b)
+                        #result = calc.perform_operation(a, b)
+
+                        # Execute command using Command Pattern
+                        result = invoker.execute_calculation(command, a, b)
 
                         # Normalize the result if it's a Decimal
                         if isinstance(result, Decimal):
