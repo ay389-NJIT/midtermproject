@@ -6,6 +6,7 @@ from abc import ABC, abstractmethod
 from decimal import Decimal
 from typing import Dict
 from app.exceptions import ValidationError
+from app.decorators import OperationRegistry
 
 
 class Operation(ABC):
@@ -24,7 +25,7 @@ class Operation(ABC):
         """Return operation name."""
         return self.__class__.__name__
 
-
+@OperationRegistry.register('add', 'Basic Arithmetic', 'Addition of two numbers', 'add 5 3 = 8')
 class Addition(Operation):
     """Addition operation."""
 
@@ -32,7 +33,7 @@ class Addition(Operation):
         self.validate_operands(a, b)
         return a + b
 
-
+@OperationRegistry.register('subtract', 'Basic Arithmetic', 'Subtraction of two numbers', 'subtract 10 3 = 7')
 class Subtraction(Operation):
     """Subtraction operation."""
 
@@ -40,7 +41,7 @@ class Subtraction(Operation):
         self.validate_operands(a, b)
         return a - b
 
-
+@OperationRegistry.register('multiply', 'Basic Arithmetic', 'Multiplication of two numbers', 'multiply 4 5 = 20')
 class Multiplication(Operation):
     """Multiplication operation."""
 
@@ -48,7 +49,7 @@ class Multiplication(Operation):
         self.validate_operands(a, b)
         return a * b
 
-
+@OperationRegistry.register('divide', 'Basic Arithmetic', 'Division of two numbers', 'divide 10 2 = 5')
 class Division(Operation):
     """Division operation."""
 
@@ -61,7 +62,7 @@ class Division(Operation):
         self.validate_operands(a, b)
         return a / b
 
-
+@OperationRegistry.register('power', 'Advanced Operations', 'Raise number to a power', 'power 2 3 = 8')
 class Power(Operation):
     """Power operation."""
 
@@ -74,7 +75,7 @@ class Power(Operation):
         self.validate_operands(a, b)
         return Decimal(pow(float(a), float(b)))
 
-
+@OperationRegistry.register('root', 'Advanced Operations', 'Calculate nth root of a number', 'root 27 3 = 3')
 class Root(Operation):
     """Root operation."""
 
@@ -89,7 +90,7 @@ class Root(Operation):
         self.validate_operands(a, b)
         return Decimal(pow(float(a), 1 / float(b)))
 
-
+@OperationRegistry.register('modulus', 'Specialized Operations', 'Calculate remainder after division', 'modulus 10 3 = 1')
 class Modulus(Operation):
     """Modulus operation (remainder)."""
 
@@ -102,7 +103,7 @@ class Modulus(Operation):
         self.validate_operands(a, b)
         return a % b
 
-
+@OperationRegistry.register('int_divide', 'Specialized Operations', 'Integer division (quotient only)', 'int_divide 10 3 = 3')
 class IntegerDivision(Operation):
     """Integer division operation."""
 
@@ -115,7 +116,7 @@ class IntegerDivision(Operation):
         self.validate_operands(a, b)
         return a // b
 
-
+@OperationRegistry.register('percent', 'Specialized Operations', 'Calculate percentage', 'percent 25 100 = 25')
 class Percentage(Operation):
     """Percentage calculation ((a/b) * 100)."""
 
@@ -128,7 +129,7 @@ class Percentage(Operation):
         self.validate_operands(a, b)
         return (a / b) * 100
 
-
+@OperationRegistry.register('abs_diff', 'Specialized Operations', 'Absolute difference between numbers', 'abs_diff 3 10 = 7')
 class AbsoluteDifference(Operation):
     """Absolute difference operation."""
 
@@ -167,3 +168,8 @@ class OperationFactory:
         if not operation_class:
             raise ValueError(f"Unknown operation: {operation_type}")
         return operation_class()
+    
+    @classmethod
+    def get_operation_names(cls) -> list:
+        """Get list of all registered operation names."""
+        return list(cls._operations.keys())
